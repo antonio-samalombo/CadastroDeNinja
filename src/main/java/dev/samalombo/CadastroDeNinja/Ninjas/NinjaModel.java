@@ -18,8 +18,8 @@ public class NinjaModel {
 
     // @ManyToOne um ninja - tem uma unica missão
     @ManyToOne
-    @JoinColumn(name = "missoesModel_id") //Foreing Key ou Chave Estrangeira
-    private MissoesModel missoesModel;
+    @JoinColumn(name = "missoes_id") //Foreing Key ou Chave Estrangeira
+    private MissoesModel missoes;
 
 
     public NinjaModel() {
