@@ -2,6 +2,7 @@ package dev.samalombo.CadastroDeNinja.Ninjas;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,12 @@ public class NinjaService {
     public  NinjaModel criarNinja(NinjaModel ninja){
         return ninjaRepository.save(ninja);
     }
+
+    // Deletar o ninja - Tem que ser um metodo VOID
+    public void deletarNinjaPorId(Long id){
+         ninjaRepository.deleteAllById(Collections.singleton(id));
+    }
+
 
 
 
