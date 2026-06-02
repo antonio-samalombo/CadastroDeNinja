@@ -23,19 +23,20 @@ public class NinjaModel {
     @Column(name = "nome")
     private String nome;
 
-    // Coloca a coluna email como UNIQUE
     @Column(unique = true)
     private String email;
 
     @Column(name = "img_Url")
     private String imUrl;
 
+    @Column(name = "rank")
+    private String rank;
+
     @Column(name = "idade")
     private int idade;
 
-    // @ManyToOne um ninja - tem uma unica missão
     @ManyToOne
-    @JoinColumn(name = "missoes_id") //Foreing Key ou Chave Estrangeira
+    @JoinColumn(name = "missoes_id")
     private MissoesModel missoes;
 
 }
