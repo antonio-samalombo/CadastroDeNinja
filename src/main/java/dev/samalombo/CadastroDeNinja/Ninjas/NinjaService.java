@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class NinjaService {
@@ -19,7 +18,6 @@ public class NinjaService {
         this.ninjaMapper = ninjaMapper;
     }
 
-    // Listar todos os meus ninjas
     public List<NinjaDTO> listarNinjas(){
         List<NinjaModel> ninjas = ninjaRepository.findAll();
         return ninjas.stream()
@@ -27,39 +25,33 @@ public class NinjaService {
                 .collect(Collectors.toList());
     }
 
-    // Listar todos os meus ninjas por ID
     public NinjaDTO listarNinjasPorId(Long id){
         Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
-                return ninjaPorId.map(ninjaMapper::map).orElse(null);
+        return ninjaPorId.map(ninjaMapper::map).orElse(null);
     }
 
-    // Criar um novo ninja
     public NinjaDTO criarNinja(NinjaDTO ninjaDTO){
-       NinjaModel ninja = ninjaMapper.map(ninjaDTO);
-       ninja = ninjaRepository.save(ninja);
-       return ninjaMapper.map(ninja);
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
-    // Deletar o ninja - Tem que ser um metodo VOID
     public void deletarNinjaPorId(Long id){
         ninjaRepository.deleteAllById(Collections.singleton(id));
     }
 
-    // Atualizar ninja
+
     public NinjaDTO atualizarNinja(Long id, NinjaDTO ninjaDTO){
         Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
+
         if (ninjaExistente.isPresent()) {
             NinjaModel ninjaAtulizado = ninjaMapper.map(ninjaDTO);
             ninjaAtulizado.setId(id);
             NinjaModel ninjaSalvo = ninjaRepository.save(ninjaAtulizado);
             return ninjaMapper.map(ninjaSalvo);
         }
+
         return null;
-
     }
-
-
-
-
 
 }
