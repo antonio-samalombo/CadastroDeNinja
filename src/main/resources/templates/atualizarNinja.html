@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Atualizar Ninja</title>
+    <style>
+        /* Mantendo o mesmo estilo simples e limpo da sua tela de adicionar */
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        .form-container { background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; max-width: 400px; margin: auto; }
+        label { margin: 10px 0 5px; display: block; }
+        input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { padding: 10px 15px; border: none; border-radius: 5px; background-color: #f39c12; color: white; cursor: pointer; width: 100%; font-weight: bold; }
+        button:hover { background-color: #e67e22; }
+        a { display: block; text-align: center; margin-top: 15px; text-decoration: none; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+<h1>Atualizar Ninja</h1>
+<div class="form-container">
+
+    <form th:action="@{/ninjas/ui/atualizar/{id}(id=${ninja.id})}" th:object="${ninja}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required />
+
+        <label for="imUrl">URL da Imagem:</label>
+        <input type="text" id="imUrl" th:field="*{imUrl}" required />
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" th:field="*{idade}" required />
+
+        <label for="rank">Rank:</label>
+        <input type="text" id="rank" th:field="*{rank}" required />
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <a th:href="@{/ninjas/ui/listar}">Voltar para a Lista</a>
+</div>
+</body>
+</html>
